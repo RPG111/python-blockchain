@@ -1,5 +1,5 @@
 import time
-
+from crypto_hash import crypto_hash
 
 class Block:
     """
@@ -26,7 +26,7 @@ class Block:
         """
         timestamp = time.time_ns()
         last_hash = last_block.hash
-        hash = f'{timestamp}-{last_hash}'
+        hash = crypto_hash(timestamp, last_hash, data)
 
         return Block(timestamp, last_hash, hash, data)
 
@@ -40,7 +40,7 @@ class Block:
 
 def main():
     genesis_block = Block.genesis()
-    block = Block.exmine_block(genesis_block, 'foo')
+    block = Block.mine_block(genesis_block, 'foo')
     print(block)
 
 if __name__ == '__main__':
