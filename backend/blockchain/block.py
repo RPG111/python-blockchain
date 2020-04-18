@@ -71,13 +71,15 @@ class Block:
         """
         Generates the genesis block.
         """
-        # return Block(
-        #     timestamp=GENESIS_DATA['timestamp'],
-        #     last_hash=GENESIS_DATA['last_hash'],
-        #     hash=GENESIS_DATA['hash'],
-        #     data=GENESIS_DATA['data'],
-        # )
         return Block(**GENESIS_DATA)
+    
+    @staticmethod
+    def from_json(block_json):
+        """
+        Deserialize a block's json representation back into a block instance. 
+        """
+        return Block(**block_json)
+
     @staticmethod
     def adjust_difficulty(last_block, new_timestamp):
         """
